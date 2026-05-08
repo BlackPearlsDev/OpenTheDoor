@@ -44,8 +44,27 @@ public class ApkScanner {
     }
 
     private boolean isInterestingFile(String lower) {
-        return lower.endsWith(".swf") || lower.endsWith(".xml") || lower.endsWith(".json") || lower.endsWith(".air")
+        if (lower.equals("androidmanifest.xml")) return true;
+        if (isMediaFile(lower)) return false;
+        if (lower.contains("/docs/")) return false;
+        if (lower.contains("/extensions/") && (lower.contains("/fb-res/") || lower.contains("/res/"))) return false;
+        if (lower.contains("/extensions/") && lower.endsWith("/library.swf")) return false;
+        if (lower.endsWith(".swf") || lower.endsWith(".air")) return true;
+        if (lower.contains("application.xml") || lower.contains("settings.xml")) return true;
+        if (lower.endsWith(".properties") || lower.endsWith(".dat")) return true;
+        if (!(lower.endsWith(".xml") || lower.endsWith(".json") || lower.endsWith(".txt"))) return false;
+
+        return lower.contains("config") || lower.contains("server") || lower.contains("gateway")
+                || lower.contains("endpoint") || lower.contains("manifest") || lower.contains("resource")
+                || lower.contains("cdn") || lower.contains("patch") || lower.contains("update")
                 || lower.contains("assets/") || lower.contains("raw/");
+    }
+
+    private boolean isMediaFile(String lower) {
+        return lower.endsWith(".png") || lower.endsWith(".jpg") || lower.endsWith(".jpeg") || lower.endsWith(".gif")
+                || lower.endsWith(".webp") || lower.endsWith(".ogg") || lower.endsWith(".mp3") || lower.endsWith(".wav")
+                || lower.endsWith(".mp4") || lower.endsWith(".3gp") || lower.endsWith(".fnt") || lower.endsWith(".ttf")
+                || lower.endsWith(".otf");
     }
 
     private byte[] readEntry(ZipInputStream zip, int maxBytes) throws IOException {
