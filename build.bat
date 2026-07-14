@@ -1,7 +1,9 @@
 @echo off
 setlocal EnableDelayedExpansion
 if not exist build mkdir build
-javac -encoding UTF-8 -cp "libs/netty-all-4.1.68.Final.jar" -d build src\openthedoor\Main.java src\openthedoor\config\*.java src\openthedoor\detect\*.java src\openthedoor\log\*.java src\openthedoor\util\*.java src\openthedoor\scan\*.java src\openthedoor\net\tcp\*.java src\openthedoor\net\http\*.java src\openthedoor\net\proxy\*.java
+javac -encoding UTF-8 -cp "libs/netty-all-4.1.68.Final.jar" -d build src\openthedoor\Main.java src\openthedoor\config\*.java src\openthedoor\detect\*.java src\openthedoor\log\*.java src\openthedoor\util\*.java src\openthedoor\scan\*.java src\openthedoor\ui\*.java src\openthedoor\net\tcp\*.java src\openthedoor\net\http\*.java src\openthedoor\net\proxy\*.java
+if errorlevel 1 exit /b 1
+if exist resources xcopy /E /I /Y resources build >nul
 if errorlevel 1 exit /b 1
 
 set "JAR_CMD=jar"

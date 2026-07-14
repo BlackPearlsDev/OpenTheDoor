@@ -6,20 +6,41 @@ import openthedoor.net.proxy.TcpProxyServer;
 import openthedoor.net.tcp.TcpListenServer;
 import openthedoor.scan.ApkScanner;
 import openthedoor.scan.ScanResult;
+import openthedoor.ui.DesktopUi;
 
 public class Main {
     public static void main(String[] args) {
         try {
-            String configPath = args.length >= 1 ? args[0] : "config.properties";
+            if (args.length == 0) {
+                DesktopUi.launch("config.properties");
+                return;
+            }
+
+            boolean cli = "--cli".equalsIgnoreCase(args[0]);
+            if ("--ui".equalsIgnoreCase(args[0])) {
+                String uiConfigPath = args.length >= 2 ? args[1] : "config.properties";
+                DesktopUi.launch(uiConfigPath);
+                return;
+            }
+
+            String configPath = cli
+                    ? (args.length >= 2 ? args[1] : "config.properties")
+                    : args[0];
             ServerConfig config = ServerConfig.load(configPath);
 
-            if (args.length >= 2) config.setHost(args[1]);
-            if (args.length >= 3) config.setPort(Integer.parseInt(args[2]));
+            int overrideOffset = cli ? 2 : 1;
+            if (args.length >= overrideOffset + 1) config.setHost(args[overrideOffset]);
+            if (args.length >= overrideOffset + 2) config.setPort(Integer.parseInt(args[overrideOffset + 1]));
 
             printBoot(config);
 
             String mode = config.getMode().toLowerCase().trim();
             switch (mode) {
+                case "ui":
+                case "desktop":
+                    DesktopUi.launch(configPath);
+                    break;
+
                 case "tcp":
                 case "listen":
                 case "tcp-listen":

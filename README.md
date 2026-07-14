@@ -251,16 +251,34 @@ OpenTheDoor.jar
 
 ## Run
 
+### Desktop interface
+
+On Windows, double-click:
+
+```bat
+OpenTheDoor.bat
+```
+
+Or run the executable JAR directly:
+
+```bash
+java -jar OpenTheDoor.jar
+```
+
+The desktop interface lets you edit `config.properties`, run an APK scan, read the generated report, and prepare listener/proxy commands.
+
+### Command line
+
 ### Linux / macOS
 
 ```bash
-java -cp "OpenTheDoor.jar:libs/netty-all-4.1.68.Final.jar" openthedoor.Main config.properties
+java -cp "OpenTheDoor.jar:libs/netty-all-4.1.68.Final.jar" openthedoor.Main --cli config.properties
 ```
 
 ### Windows
 
 ```bat
-java -cp "OpenTheDoor.jar;libs\netty-all-4.1.68.Final.jar" openthedoor.Main config.properties
+java -cp "OpenTheDoor.jar;libs\netty-all-4.1.68.Final.jar" openthedoor.Main --cli config.properties
 ```
 
 ---
