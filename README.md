@@ -199,7 +199,7 @@ openthedoor_v2/
 │  │  └─ UrlExtractor.java
 │  └─ util/
 │     └─ HexDump.java
-├─ config.properties
+├─ config.example.properties
 ├─ mocks/
 │  └─ default.json
 ├─ logs/
@@ -267,6 +267,12 @@ java -jar OpenTheDoor.jar
 
 The desktop interface lets you edit `config.properties`, run an APK scan, read the generated report, and prepare listener/proxy commands.
 
+`config.properties` is local and ignored by Git. To start from a tracked template:
+
+```bash
+cp config.example.properties config.properties
+```
+
 ### Command line
 
 ### Linux / macOS
@@ -285,7 +291,7 @@ java -cp "OpenTheDoor.jar;libs\netty-all-4.1.68.Final.jar" openthedoor.Main --cl
 
 ## Configuration
 
-Example `config.properties`:
+Example `config.example.properties`:
 
 ```properties
 mode=auto

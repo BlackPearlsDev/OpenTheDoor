@@ -1,1 +1,37 @@
+# Build outputs
 /bin/
+/build/
+/out/
+/target/
+*.class
+
+# Runtime data
+/logs/
+/reports/
+*.log
+
+# Local configuration
+/config.properties
+
+# User-provided game/client artifacts
+*.apk
+*.apks
+*.aab
+*.dex
+*.ipa
+
+# IDE metadata
+/.classpath
+/.project
+/.settings/
+/.idea/
+/.vscode/
+*.iml
+
+# OS and editor noise
+.DS_Store
+Thumbs.db
+desktop.ini
+*.tmp
+*.bak
+*.swp

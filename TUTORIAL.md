@@ -33,7 +33,7 @@ openthedoor_v2/
 ├─ mocks/
 ├─ logs/
 ├─ reports/
-├─ config.properties
+├─ config.example.properties
 ├─ build.sh
 ├─ build.bat
 └─ README.md
@@ -81,20 +81,20 @@ OpenTheDoor.jar
 ### Linux / macOS
 
 ```bash
-java -cp "OpenTheDoor.jar:libs/netty-all-4.1.68.Final.jar" openthedoor.Main config.properties
+java -cp "OpenTheDoor.jar:libs/netty-all-4.1.68.Final.jar" openthedoor.Main --cli config.properties
 ```
 
 ### Windows
 
 ```bat
-java -cp "OpenTheDoor.jar;libs\netty-all-4.1.68.Final.jar" openthedoor.Main config.properties
+java -cp "OpenTheDoor.jar;libs\netty-all-4.1.68.Final.jar" openthedoor.Main --cli config.properties
 ```
 
 ---
 
 ## 4. Understand the configuration file
 
-Example `config.properties`:
+Example `config.example.properties`:
 
 ```properties
 mode=auto
@@ -189,7 +189,7 @@ scanOutput=reports/game-scan.md
 ### Run
 
 ```bash
-java -cp "OpenTheDoor.jar:libs/netty-all-4.1.68.Final.jar" openthedoor.Main config.properties
+java -cp "OpenTheDoor.jar:libs/netty-all-4.1.68.Final.jar" openthedoor.Main --cli config.properties
 ```
 
 ### Output
@@ -765,7 +765,7 @@ On Linux/macOS, ports below 1024 may require admin privileges.
 Use:
 
 ```bash
-sudo java -cp "OpenTheDoor.jar:libs/netty-all-4.1.68.Final.jar" openthedoor.Main config.properties
+sudo java -cp "OpenTheDoor.jar:libs/netty-all-4.1.68.Final.jar" openthedoor.Main --cli config.properties
 ```
 
 Or use another port:
